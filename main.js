@@ -15,7 +15,11 @@ function random(min, max) {
 // function to generate random RGB color value
 
 function randomRGB() {
-  return `rgb(${random(100, 255)},${random(100, 255)},${random(100, 255)})`;
+  return `rgb(${random(100, 255)},${random(50, 255)},${random(100, 150)})`;
+}
+
+function randomEvilRGB(){
+    return `rgb(255,${random(0, 200)},${random(6, 200)})`;
 }
 
 class Shape {
@@ -120,7 +124,7 @@ while (balls.length < 25) {
 
 Evil.prototype.drawE = function () {
   ctx.beginPath();
-  ctx.strokeStyle = "red";
+  ctx.strokeStyle = randomEvilRGB();
   ctx.lineWidth = 3;
   ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
   ctx.stroke();
@@ -186,7 +190,7 @@ let evilC = new Evil(random(10, width - 10), random(10, height - 10));
 evilC.setControls();
 
 function loop() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';  // this covers up the previous frame's drawing before the next one is drawn, gives the fading trail effect
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
     ctx.fillRect(0, 0, width, height); 
     evilC.bounds();
     evilC.drawE();
